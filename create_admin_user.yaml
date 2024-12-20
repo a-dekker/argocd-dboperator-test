@@ -1,0 +1,9 @@
+apiVersion: "kinda.rocks/v1beta1"
+kind: DbUser
+metadata:
+  name: postgres-owner
+  namespace: my-app
+spec:
+  secretName: postgres-readwrite-secret
+  accessType: main
+  databaseRef: postgres-for-my-app

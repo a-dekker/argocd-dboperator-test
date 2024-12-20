@@ -1,0 +1,22 @@
+apiVersion: kinda.rocks/v1beta1
+kind: DbInstance
+metadata:
+  name: postgres-melmac
+  annotations:
+    kinda.rocks/rds-iam-impersonate: "true"
+  # name: pg-instance
+  # cluster-scoped resource, no namespace
+spec:
+  adminSecretRef:
+    Name: "pg-admin-secret" # reference secret created by previous command
+    Namespace: "db-operator"
+  engine: "postgres"
+  generic:
+    # host: "melmac.cqcvmecoufpa.eu-west-1.rds.amazonaws.com"  # lab-5
+    host: "host.minikube.internal"
+    port: 5432 # default postgres port
+  sslConnection:
+    # enabled: true
+    skip-verify: true
+  allowedPrivileges:
+    - rds_iam

@@ -1,0 +1,17 @@
+apiVersion: "kinda.rocks/v1beta1"
+kind: DbUser
+metadata:
+  name: postgres-readonly
+  namespace: my-app
+spec:
+  secretName: postgres-readonly-secret
+  accessType: readOnly
+  databaseRef: postgres-for-my-app
+  # grantToAdmin: false
+  # extraPrivileges:
+  #   - rds_iam
+  # credentials:
+  #   templates:
+  #     - template: "{{ .Query \"grant arnotest to \"my-app-postgres-readonly\"\" }}"
+  #       name: RDS_IAM_GRANTED
+  #       secret: true

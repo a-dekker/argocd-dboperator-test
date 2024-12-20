@@ -1,0 +1,24 @@
+apiVersion: kinda.rocks/v1beta1
+kind: Database
+metadata:
+  name: postgres-for-my-app
+  namespace: my-app
+spec:
+  instance: "postgres-melmac" # must match with DbInstance name
+  deletionProtected: false # Protection to not delete database when custom resource is deleted
+  # secret in which the credentials for the database should be stored (same namespace)
+  secretName: example-postgres-db-credentials
+  # the content of the secret
+  secretsTemplates:
+    # https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
+    CONNECTION_STRING: "{{ .Protocol }}://{{ .UserName }}:{{ .Password }}@{{ .DatabaseHost }}:{{ .DatabasePort }}/{{ .DatabaseName }}"
+    DB_PASS: "{{ .Password }}"
+    DB_USER: "{{ .UserName }}"
+    DB_HOST: "{{ .DatabaseHost }}"
+    DB_PORT: "{{ .DatabasePort }}"
+    DB_NAME: "{{ .DatabaseName }}"
+    DB_TYPE: "{{ .Protocol }}"
+  postgres:
+    dropPublicSchema: false # Do not set it, or set to false if you don't want to drop the public schema
+    schemas: # The user that's going to be created by db-operator, will be granted all privileges on these schemas
+      - 'my-app-postgres-for-my-app'

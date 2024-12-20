@@ -1,0 +1,12 @@
+apiVersion: "kinda.rocks/v1beta1"
+kind: DbUser
+metadata:
+  name: postgres-write
+  namespace: my-app
+spec:
+  secretName: postgres-readwrite-secret
+  accessType: readWrite
+  databaseRef: postgres-for-my-app
+  grantToAdmin: false
+  # extraPrivileges:
+  #   - rds_iam
