@@ -15,3 +15,12 @@ spec:
   #     - template: "{{ .Query \"grant arnotest to \"my-app-postgres-readonly\"\" }}"
   #       name: RDS_IAM_GRANTED
   #       secret: true
+  secretsTemplates:
+    # https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
+    CONNECTION_STRING: "{{ .Protocol }}://{{ .UserName }}:{{ .Password }}@{{ .DatabaseHost }}:{{ .DatabasePort }}/{{ .DatabaseName }}"
+    DB_PASS: "{{ .Password }}"
+    DB_USER: "{{ .UserName }}"
+    DB_HOST: "{{ .DatabaseHost }}"
+    DB_PORT: "{{ .DatabasePort }}"
+    DB_NAME: "{{ .DatabaseName }}"
+    DB_TYPE: "{{ .Protocol }}"
