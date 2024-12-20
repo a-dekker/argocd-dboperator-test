@@ -19,6 +19,6 @@ spec:
     DB_NAME: "{{ .DatabaseName }}"
     DB_TYPE: "{{ .Protocol }}"
   postgres:
-    dropPublicSchema: false # Do not set it, or set to false if you don't want to drop the public schema
+    # dropPublicSchema: false # Do not set it, or set to false if you don't want to drop the public schema
     schemas: # The user that's going to be created by db-operator, will be granted all privileges on these schemas
-      - 'my-app-postgres-for-my-app'
+      - "my-app-postgres-for-my-app"
