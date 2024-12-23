@@ -6,6 +6,7 @@ metadata:
 spec:
   instance: "postgres-melmac" # must match with DbInstance name
   deletionProtected: false # Protection to not delete database when custom resource is deleted
+  cleanup: true
   # secret in which the credentials for the database should be stored (same namespace)
   secretName: example-postgres-db-credentials
   # the content of the secret
