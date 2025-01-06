@@ -7,7 +7,7 @@ spec:
   secretName: postgres-readonly-secret
   accessType: readOnly
   databaseRef: postgres-for-my-app
-  cleanup: true
+  cleanup: false
   # grantToAdmin: false
   # extraPrivileges:
   #   - rds_iam
